@@ -1,4 +1,5 @@
 const Movie = require("../models/movies.js");
+const Your = require("../models/yourmovies.js");
 
 module.exports.index = async (req, res) => {
   const perPage = 8;
@@ -45,4 +46,28 @@ module.exports.showPage = async (req, res) => {
   const { id } = req.params;
   const movie = await Movie.findById(id);
   res.render("movie/show.ejs", { movie });
+};
+
+module.exports.aboutPage = async (req, res) => {
+  res.render("movie/about.ejs");
+};
+
+//your movies
+module.exports.yourmoviesPage = async (req, res) => {
+  const us = req.user;
+  const your = await Your.find({ user: us._id })
+    .populate("movie")
+    .populate("user");
+  res.render("movie/yourmovies.ejs", { your });
+};
+
+module.exports.saveMovie = async (req, res) => {
+  const { id } = req.params;
+  const movie = await Movie.findById(id);
+  const newm = new Your();
+  newm.user = req.user._id;
+  newm.movie = movie;
+  newm.save();
+  req.flash("success", "Movie Saved !");
+  res.redirect(`/movie/${id}`);
 };

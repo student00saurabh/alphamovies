@@ -79,12 +79,40 @@
 			  </button>
 			</div>
 		  </form>
+
+
   
 		  <!-- Right Nav -->
 		  <ul class="navbar-nav">
+
+			<% if(!currUser) { %>
+
+
+		  	<div class="navbar-nav ">
+				<a class="nav-link" href="/signup"> Signup</a>
+			</div>
+			<div class="navbar-nav ">
+				<a class="nav-link" href="/login"> Login</a>
+			</div>
+			<% } %>
+
+			<% if(currUser) { %>
+		  	<div class="navbar-nav ">
+				<a href="/yourmovies" class="nav-link">Your Movies</a>
+		  	</div>
+			<% } %>
+
+
 			<li class="nav-item">
-			  <a class="nav-link" href="/thecubicals/blogs/new">About</a>
+			  <a class="nav-link" href="/about">About</a>
 			</li>
+
+			<% if(currUser) { %>
+		  	<div class="navbar-nav ">
+				<a href="/logout" class="nav-link logout-btn">Logout</a>
+		  	</div>
+			<% } %>
+
 		  </ul>
 		</div>
 	  </div>

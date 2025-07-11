@@ -5,8 +5,15 @@
     <!-- Movie Image -->
     <div class="col-md-5">
       <div class="rounded shadow-lg overflow-hidden" style="background-color: #78b4d2;">
-        <img src="<%= movie.image %>" alt="<%= movie.title %>" class="img-fluid w-100" style="object-fit: cover;">
-      </div>
+  <img 
+    src="<%= movie.image %>" 
+    alt="<%= movie.title %>" 
+    class="img-fluid w-100" 
+    style="object-fit: cover; height: 340px;" 
+    onerror="this.onerror=null;this.src='/images/img1.jpg';"
+  >
+</div>
+
     </div>
 
     <!-- Movie Details -->
@@ -22,6 +29,10 @@
         <% if (movie.url) { %>
           <a href="<%= movie.url %>" target="_blank" class="btn btn-outline-light">Watch / Read More</a>
         <% } %>
+
+        <form action="/yourmovies/<%= movie._id %>" method="POST" >
+              <button class="btn btn-sm btn-sm py-0 px-2" style="color: aquamarine;">save</button>
+         </form>
       </div>
     </div>
   </div>

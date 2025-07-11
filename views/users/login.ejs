@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="container py-5">
+  <!-- Welcome Message -->
+  <div class="text-center mb-4" data-aos="fade-down">
+    <h1 class="fw-bold text-primary mb-2">Welcome Back to AlphaMovies</h1>
+  </div>
+
+  <!-- Login Form Card -->
+  <div class="row justify-content-center" data-aos="fade-up">
+    <div class="col-12 col-md-6 col-lg-5">
+      <div class="card shadow rounded-4 border-0 p-4" style="background-color: #f9fcff;">
+        <h4 class="text-center mb-4 text-dark">Log In to Your Account</h4>
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label fw-semibold">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+            <div class="invalid-feedback">Please enter your password.</div>
+          </div>
+
+          <!-- Login Button -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary fw-semibold" style="background-color: #78b4d2; border: none;">
+              🔐 Log In
+            </button>
+          </div>
+        </form>
+
+        <!-- Links -->
+        <div class="mt-4 text-center">
+          <p class="text-muted mb-1">New to TheCubicals? 
+            <a href="/signup" class="text-decoration-none fw-semibold" style="color: #78b4d2;">Create an account</a>
+          </p>
+          <!-- <p>
+            <a href="/forgot-password" class="text-decoration-none small" style="color: #666;">Forgot your password?</a>
+          </p> -->
+        </div>
+
+        <!-- Tips -->
+        <div class="alert alert-info small mt-4 mb-0" role="alert">
+          <strong>Security Tip:</strong> Always log in from a secure and trusted device. Never share your credentials.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

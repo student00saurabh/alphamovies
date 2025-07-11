@@ -14,8 +14,10 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 const homeRouter = require("./routes/home.js");
+const userRouter = require("./routes/user.js");
 
 const dbUrl = process.env.ATLUSDB_URL;
 
@@ -65,12 +67,26 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, User.authenticate())
+);
 
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+// Serialize user (simple version)
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
@@ -80,6 +96,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", homeRouter);
+app.use("/", userRouter);
 
 //error checker
 // app.use((req, res, next) => {

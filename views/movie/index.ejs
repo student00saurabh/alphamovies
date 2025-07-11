@@ -19,7 +19,14 @@
         <div class="card h-100 border-0 shadow-lg text-light rounded-4 overflow-hidden" style="background-color: #78b4d2 !important;">
           <div class="position-relative">
             <span class="badge bg-dark position-absolute top-0 start-0 m-2 px-2 py-1 small" style="opacity: 0.85;"><%= movie.category %></span>
-            <img src="<%= movie.image %>" class="card-img-top" alt="<%= movie.title %>" style="height: 270px; object-fit: cover;">
+            <img 
+              src="<%= movie.image %>" 
+              class="card-img-top" 
+              alt="<%= movie.title %>" 
+              style="height: 270px; object-fit: cover;" 
+              onerror="this.onerror=null;this.src='images/img1.jpg';"
+              />
+
           </div>
           <div class="card-body d-flex flex-column px-3 py-2">
             <h5 class="card-title mb-2"><%= movie.title %></h5>
