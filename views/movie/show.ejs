@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<div class="container py-5" data-aos="fade-up">
+  <div class="row g-4 align-items-start">
+    <!-- Movie Image -->
+    <div class="col-md-5">
+      <div class="rounded shadow-lg overflow-hidden" style="background-color: #78b4d2;">
+        <img src="<%= movie.image %>" alt="<%= movie.title %>" class="img-fluid w-100" style="object-fit: cover;">
+      </div>
+    </div>
+
+    <!-- Movie Details -->
+    <div class="col-md-7 text-light">
+      <div class="bg-dark p-4 rounded shadow-lg h-100">
+        <span class="badge bg-primary small mb-2"><%= movie.category %></span>
+        <h2 class="mb-3"><%= movie.title %></h2>
+        <p class="text-muted small">Released: <%= new Date(movie.date).toLocaleDateString("en-IN", {
+          year: 'numeric', month: 'short', day: 'numeric'
+        }) %></p>
+        <p class="lead mb-3"><%= movie.shortdescription %></p>
+        <p class="mb-4"><%= movie.description %></p>
+        <% if (movie.url) { %>
+          <a href="<%= movie.url %>" target="_blank" class="btn btn-outline-light">Watch / Read More</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
