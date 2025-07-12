@@ -1,5 +1,76 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
+<!-- Category Scroller Section -->
+<div class="container mt-3 mb-2" data-aos="fade-down" duration="1000">
+  <div class="category-wrapper ">
+    <div class="category-scroll d-flex gap-2 overflow-auto ">
+      <a href="/" class="genre-chip">All</a>
+      <a href="/?category=Action" class="genre-chip">Action</a>
+      <a href="/?category=Sci-Fi" class="genre-chip">Sci-Fi</a>
+      <a href="/?category=Animation" class="genre-chip">Animation</a>
+      <a href="/?category=Fantasy" class="genre-chip">Fantasy</a>
+      <a href="/?category=Drama" class="genre-chip">Drama</a>
+      <a href="/?category=Crime" class="genre-chip">Crime</a>
+      <a href="/?category=Thriller" class="genre-chip">Thriller</a>
+      <a href="/?category=Romance" class="genre-chip">Romance</a>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Scroll container */
+.category-scroll {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Chip-style buttons */
+.genre-chip {
+  display: inline-block;
+  background: linear-gradient(to right, #78b4d2, #017e8b);
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+}
+
+.genre-chip:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(to right, #017e8b, #004466);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .genre-chip {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+/* Center scroll on large devices */
+@media (min-width: 992px) {
+  .category-scroll {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+</style>
+
+
+
+
 <div class="container py-4">
   <% if (movies.length === 0 || !movies) { %>
     <div class="text-center py-5">
