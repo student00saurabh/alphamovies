@@ -16,4 +16,6 @@ router
   .route("/yourmovies/:id")
   .post(isLoggedIn, wrapAsync(homeController.saveMovie));
 
+router.delete("/yourmovies/:id", isLoggedIn, homeController.unsaveMovie);
+
 module.exports = router;

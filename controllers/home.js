@@ -45,7 +45,13 @@ module.exports.index = async (req, res) => {
 module.exports.showPage = async (req, res) => {
   const { id } = req.params;
   const movie = await Movie.findById(id);
-  res.render("movie/show.ejs", { movie });
+
+  let saved = null;
+  if (req.user) {
+    saved = await Your.findOne({ user: req.user._id, movie: movie._id });
+  }
+
+  res.render("movie/show.ejs", { movie, saved });
 };
 
 module.exports.aboutPage = async (req, res) => {
@@ -64,10 +70,38 @@ module.exports.yourmoviesPage = async (req, res) => {
 module.exports.saveMovie = async (req, res) => {
   const { id } = req.params;
   const movie = await Movie.findById(id);
-  const newm = new Your();
-  newm.user = req.user._id;
-  newm.movie = movie;
-  newm.save();
-  req.flash("success", "Movie Saved !");
+
+  // Check if movie already saved by this user
+  const alreadySaved = await Your.findOne({
+    user: req.user._id,
+    movie: id,
+  });
+
+  if (alreadySaved) {
+    req.flash("error", "Movie already saved in your collection!");
+    return res.redirect(`/movie/${id}`);
+  }
+
+  // If not saved, save the movie
+  const newm = new Your({
+    user: req.user._id,
+    movie: movie,
+  });
+
+  await newm.save();
+  req.flash("success", "Movie Saved!");
   res.redirect(`/movie/${id}`);
+};
+
+module.exports.unsaveMovie = async (req, res) => {
+  const { id } = req.params;
+
+  // Remove the saved movie entry for the logged-in user
+  await Your.findOneAndDelete({
+    user: req.user._id,
+    movie: id,
+  });
+
+  req.flash("success", "Movie removed from your collection.");
+  res.redirect(`/movie/${id}`); // or redirect to /yourmovies if preferred
 };

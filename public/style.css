@@ -44,33 +44,37 @@
 	width: fit-content;
 	  transition-duration: 0.8s !important;
 	  padding: 3px 10px 3px 10px !important;
-	border-radius: 2rem;
-	border: 2px solid #004466 !important;
+	border-radius: 2rem !important;
+	border: 2px solid #78b4d2 !important;
   }
   .nav-link:hover {
 	border: 2px solid #fff !important;
 	color: #004466 !important;
-	background-color: #eef8fa;
-	border-radius: 1.5rem;
+	background-color: #eef8fa !important;
+	border-radius: 1.5rem !important;
 	box-shadow: 
 	  0 4px 6px rgba(125, 172, 229, 0.8),    /* gold shadow */
 	  inset 0 1px 2px rgba(255, 255, 255, 0.6), /* subtle inner white glow */
-	  0 2px 4px rgba(0, 0, 0, 0.05);       /* light outer depth */
-	transition: all 0.3s ease;
+	  0 2px 4px rgba(0, 0, 0, 0.05) !important;       /* light outer depth */
+	transition: all 0.3s ease !important;
   }
   
   .logout-btn{
-	color: red !important;
+	color: rgb(96, 48, 48) !important;
 	  transition-duration: 0.8s !important;
 	  padding: 3px 10px 3px 10px !important;
 	border-radius: 2rem;
-	border: 2px solid #004466 !important;
+	border: 2px solid #78b4d2 !important;
   }
   .logout-btn:hover{
-	border: 2px solid #fff !important;
-	color: #004466 !important;
-	background-color: red;
+	border: 2px solid #acc8d6 !important;
+	color: #ff6600 !important;
+	background-color: rgb(96, 48, 48);
 	  border-radius: 2rem;
+  }
+  .navbar-brand:hover{
+	border: none !important;
+	box-shadow: none !important;
   }
   .navbar-toggler {
 	background-color: #fff !important; /* Your custom color */
@@ -91,6 +95,39 @@
   #nav-close-button{
 	background-color: #eef8fa !important;
 	color: #eef8fa !important;
+  }
+  .dropdown-menu{
+	background-color: rgba(120, 180, 210, 0.8)
+ !important;
+	width: fit-content !important;
+	
+  }
+  .dropdown-item{
+	color: #004466 !important;
+	margin: 5px;
+	width: fit-content !important;
+	  transition-duration: 0.8s !important;
+	  padding: 3px 10px 3px 10px !important;
+	border-radius: 2rem;
+	border: 2px solid transparent !important;
+  }
+  .dropdown-item:hover{
+	border: 2px solid #fff !important;
+	color: #004466 !important;
+	background-color: #eef8fa;
+	border-radius: 1.5rem;
+	box-shadow: 
+	  0 4px 6px rgba(125, 172, 229, 0.8),    /* gold shadow */
+	  inset 0 1px 2px rgba(255, 255, 255, 0.6), /* subtle inner white glow */
+	  0 2px 4px rgba(0, 0, 0, 0.05);       /* light outer depth */
+	transition: all 0.3s ease;
+  }
+  .m-search-form{
+	display: flex !important;
+  align-items: center;
+  max-width: 220px;
+  flex-grow: 1;
+
   }
   
   /* Footer */

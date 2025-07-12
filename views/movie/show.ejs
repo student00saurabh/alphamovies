@@ -1,38 +1,54 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
 <div class="container py-5" data-aos="fade-up">
-  <div class="row g-4 align-items-start">
+  <div class="row g-4 align-items-stretch">
+    
     <!-- Movie Image -->
     <div class="col-md-5">
-      <div class="rounded shadow-lg overflow-hidden" style="background-color: #78b4d2;">
-  <img 
-    src="<%= movie.image %>" 
-    alt="<%= movie.title %>" 
-    class="img-fluid w-100" 
-    style="object-fit: cover; height: 340px;" 
-    onerror="this.onerror=null;this.src='/images/img1.jpg';"
-  >
-</div>
-
+      <div class="rounded shadow-lg h-100 overflow-hidden d-flex align-items-center justify-content-center" style="background-color: #78b4d2;">
+        <img 
+          src="<%= movie.image %>" 
+          alt="<%= movie.title %>" 
+          class="img-fluid w-100" 
+          style="object-fit: cover; height: 380px;" 
+          onerror="this.onerror=null;this.src='/images/img1.jpg';"
+        >
+      </div>
     </div>
 
     <!-- Movie Details -->
     <div class="col-md-7 text-light">
-      <div class="bg-dark p-4 rounded shadow-lg h-100">
-        <span class="badge bg-primary small mb-2"><%= movie.category %></span>
-        <h2 class="mb-3"><%= movie.title %></h2>
-        <p class="text-muted small">Released: <%= new Date(movie.date).toLocaleDateString("en-IN", {
-          year: 'numeric', month: 'short', day: 'numeric'
-        }) %></p>
-        <p class="lead mb-3"><%= movie.shortdescription %></p>
-        <p class="mb-4"><%= movie.description %></p>
+      <div class="p-4 rounded shadow-lg h-100 d-flex flex-column justify-content-between" style="background-color: #78b4d2;">
+        <div>
+          <span class="badge bg-primary small mb-2"><%= movie.category %></span>
+          <h2 class="mb-3"><%= movie.title %></h2>
+          <p class="text-muted small">
+            Released: <%= new Date(movie.date).toLocaleDateString("en-IN", {
+              year: 'numeric', month: 'short', day: 'numeric'
+            }) %>
+          </p>
+          <p class="lead mb-3"><%= movie.shortdescription %></p>
+          <p class="mb-4"><%= movie.description %></p>
+        </div>
+
         <% if (movie.url) { %>
-          <a href="<%= movie.url %>" target="_blank" class="btn btn-outline-light">Watch / Read More</a>
+          <a href="<%= movie.url %>" target="_blank" class="btn btn-outline-light mb-2">Watch / Read More</a>
         <% } %>
 
-        <form action="/yourmovies/<%= movie._id %>" method="POST" >
-              <button class="btn btn-sm btn-sm py-0 px-2" style="color: aquamarine;">save</button>
-         </form>
+        <% if (!saved || saved == null || saved == undefined || saved == " ") { %>
+          <form action="/yourmovies/<%= movie._id %>" method="POST" class="d-inline">
+            <button class="btn btn-sm btn-outline-light">
+              <i class="fa-regular fa-bookmark me-1"></i> Save
+            </button>
+          </form>
+        <% } else { %>
+          <form action="/yourmovies/<%= movie._id %>?_method=DELETE" method="POST" class="d-inline">
+            <button class="btn btn-sm btn-outline-light">
+              <i class="fa-solid fa-bookmark me-1"></i> Unsave
+            </button>
+          </form>
+        <% } %>
+
       </div>
     </div>
   </div>

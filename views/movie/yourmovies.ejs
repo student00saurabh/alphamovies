@@ -2,7 +2,7 @@
 
 <div class="container py-5">
   <div class="text-center mb-4" data-aos="fade-down">
-    <h2 class="fw-bold text-primary">🎬 Your Saved Movies</h2>
+    <h2 class="fw-bold">🎬 Your Saved Movies</h2>
     <p class="text-muted">Here's your personal collection of favorite or saved movies on AlphaMovies.</p>
   </div>
 
@@ -13,38 +13,27 @@
       <a href="/" class="btn btn-outline-primary mt-3">Explore Movies</a>
     </div>
   <% } else { %>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" data-aos="fade-up">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" >
       <% your.forEach(item => { %>
-        <div class="col">
-          <div class="card h-100 shadow border-0 text-light" style="background-color: #78b4d2;">
+        <div div class="col" data-aos="fade-up" duration="1000">
+          <div class="position-relative" style="background-color: #78b4d2;">
+            <span class="badge bg-dark position-absolute top-0 start-0 m-2 px-2 py-1 small" style="opacity: 0.85;"><%= item.movie.category %></span>
             <img 
-  src="<%= item.image ? item.image : '/images/img1.jpg' %>" 
-  class="card-img-top" 
-  alt="<%= item.title || 'Movie Poster' %>" 
-  style="height: 270px; object-fit: cover;">
+              src="<%= item.movie.image %>" 
+              class="card-img-top" 
+              alt="<%= item.movie.title %>" 
+              style="height: 270px; object-fit: cover;" 
+              onerror="this.onerror=null;this.src='images/img1.jpg';"
+              />
 
-            <div class="card-body d-flex flex-column">
-              <small class="badge bg-dark mb-2"><%= item.category %></small>
-              <h5 class="card-title"><%= item.title %></h5>
-              <p class="card-text small">
-                <% if (item.movie.shortdescription) { %>
-  <p class="card-text small">
-    <%= item.movie.shortdescription.length > 100 
-      ? item.movie.shortdescription.substring(0, 100) + "..." 
-      : item.movie.shortdescription 
-    %>
-  </p>
-<% } else { %>
-  <p class="card-text small text-muted fst-italic">No description available.</p>
-<% } %>
-
-              </p>
-              <a href="<%= item.url %>" target="_blank" class="btn btn-outline-light mt-auto">Read More</a>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center small text-white bg-dark rounded-bottom px-3 py-2">
-  				<span class="fst-italic">Added on:</span>
-  				<span><%= new Date(item.movie.date).toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' }) %></span>
-			</div>
+            <div class="card-body d-flex flex-column px-3 py-2">
+              <h5 class="card-title mb-2"><%= item.movie.title %></h5>
+            <p class="card-text small flex-grow-1"><%= item.movie.shortdescription.length > 100 ? item.movie.shortdescription.substring(0, 100) + "..." : item.movie.shortdescription %></p>
+            <a href="/movie/<%= item.movie._id %>" class="btn btn-outline-light mt-2 w-100" >Read More</a>
+          </div>
+          <div class="card-footer text-muted small px-3 py-2">
+            Released: <%= new Date(item.movie.date).toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' }) %>
+          </div>
           </div>
         </div>
       <% }) %>
