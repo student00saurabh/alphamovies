@@ -1,11 +1,6 @@
 # 🎬 AlphaMovies
 
-<img 
-        src="/images/alpha.png" 
-        alt="AlphaMovies" 
-        height="400px"
-		width="400px"
-      />
+![AlphaMovies Banner](public/images/alpha.png)
 
 **AlphaMovies** is a beautifully designed, responsive movie exploration platform that allows users to browse, view, and save movies. Built using the **MERN-lite stack** (MongoDB, Express, Node.js, EJS), this project emphasizes clean code, user experience, scalability, and modern web techniques.
 
@@ -46,16 +41,17 @@
 ## 🛠 Code Structure
 
 AlphaMovies/
-├── controllers/ # Route logic (auth, movies, save, unsave)
-├── models/ # Mongoose schemas (User, Movie, SavedMovie)
-├── routes/ # Express routes for each section
-├── views/ # EJS templates
-│ ├── layouts/ # Reusable layout boilerplates
-│ └── movie/ # Index, Show, YourMovies pages
-├── public/ # CSS, JS, images
-├── utils/ # WrapAsync, Mail setup
-├── app.js # Main server entry
-└── .env # Secret credentials
+├── controllers/         # Route logic (auth, movies, save, unsave)
+├── models/              # Mongoose schemas (User, Movie, SavedMovie)
+├── routes/              # Express routes for signup, login, movies, user actions
+├── views/               # EJS templates
+│   ├── layouts/         # Reusable layout boilerplates (header, footer)
+│   └── movie/           # Index, Show, YourMovies, Search result pages
+├── public/              # Static files: CSS, JS, images, favicon
+├── utils/               # Custom utilities like wrapAsync, mail setup
+├── app.js               # Main Express app with middleware and routes
+└── .env                 # Environment variables (never commit this)
+
 
 
 
