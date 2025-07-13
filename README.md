@@ -1,3 +1,5 @@
+> Note: Two contributor names may appear on this project, but both identities belong to me (Saurabh Mishra), due to commits made with different Git configurations earlier.
+
 # 🎬 AlphaMovies
 
 ![AlphaMovies Banner](public/images/alpha.png)
